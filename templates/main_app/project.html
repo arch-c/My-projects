@@ -1,0 +1,12 @@
+{% extends 'main_app/base.html' %}
+
+{% block title %}{{ project.project_name }}{% endblock %}
+
+{% block content %}
+    <h1>{{ project.project_name }}</h1>
+    <p class="d-text">Describe: {{ project.project_describe}}</p>
+    <p class="published">Published: {{ project.project_published }}</p>
+    <div class="t-link">
+        <a href="">{{ project.project_link }}</a>
+    </div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="{% static 'main.css' %}">
+        <link rel="stylesheet" href="{% static 'project_list.css' %}">
+        <link rel="stylesheet" href="{% static 'project.css' %}">
+        <title>{% block title %} Default {% endblock %}</title>
+    {% endblock %}
+</head>
+<body>
+<div class="header">
+    {% block header %}
+        <div class="container">
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'projects' %}">Projects</a></li>
+                <li style="float:right;">
+                    <form action="{% url  'search_result' %}" method="get">
+                        <input class="search-area" name="search" type="search" placeholder="Enter the project name">
+                        <input  class="search-button" type="submit" value="Search">
+                    </form>
+                </li>
+            </ul>
+        </div>
+    {% endblock %}
+</div>
+<div class="content container">
+    {% block content %}
+        default
+    {% endblock %}
+</div>
+<div class="footer">
+    {% block footer %}
+        <p class="contact">Contact: arch.c.caster@gmail.com</p>
+    {% endblock %}
+</div>
+
+</body>
+</html>

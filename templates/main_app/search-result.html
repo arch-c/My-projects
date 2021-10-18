@@ -1,0 +1,34 @@
+{% extends 'main_app/base.html' %}
+
+{% block title %}Search result{% endblock %}
+
+{% block content %}
+    {% for result in object_list %}
+        <div class="projects">
+            <h2><a href="{% url 'project' result.pk %}">{{ result.project_name }}</a></h2>
+            <p>Describe: {{ result.project_describe|truncatewords:20 }}</p>
+            <div class="link-date">
+                <p class="pub-date">Published date: {{ result.project_published}}</p>
+                <p class="p-link"><a href="{{ result.project_link }}">More...</a></p>
+            </div>
+        </div>
+    {% endfor %}
+
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+            </span>
+
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}&search={{ search }}">next</a>
+                <a href="?page={{ page_obj.paginator.num_pages }}&search={{ search }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+{% endblock %}
